@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="author" content="Gorazd Stieber">
+    <meta name="description" content="KraussMaffei interview test">
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+    
+    <script defer src="components/NavBar.js"></script>
+    <script defer src="components/CommentField.js"></script>
+    <script defer src="components/AddCommentButton.js"></script>
+
+    <title>Comments page</title>
+</head>
+<body>
+    
+    <nav-bar></nav-bar>
+
+    <div class="container">
+
+        <div  id="commentsContainer">
+            <!-- Comments are rendered here -->
+        </div>
+
+        <add-comment-button></add-comment-button>
+
+        <!-- Modal -->
+        <div id="inappropriateWordsModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span id="closeDialog-inappropriateWordsModal" class="closeDialog">&times;</span>
+                <p class="center">Comment can not be added because it contains inappropriate words.</p>
+            </div>
+
+        </div>
+
+        <!-- Login modal -->
+        <div id="loginModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span id="closeDialog-loginModal" class="closeDialog">&times;</span>
+                
+                <div class="center">
+                    <p>You need to log in first</p>
+                    
+                    <form id="loginForm">
+                        <label for="name">Name</label><br>
+                        <input type="text" id="name" name="name" value="admin"><br>
+                        <label for="password">Password</label><br>
+                        <input type="text" id="password" name="password" value=""><br><br>
+                        <input type="submit" value="Submit" class="submit">
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
+    
+</body>
+
+<script src="index.js"></script>
+</html>

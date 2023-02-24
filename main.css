@@ -1,0 +1,99 @@
+:root {
+    --nav-bar-background-color: #00325a;
+    --nav-bar-color: #F5F5F5;
+    --nav-bar-background-color-hover: #426079;
+}
+
+body {
+    margin: 0;
+    background-color: #F5F5F5;
+    font-family: "Lucida Handwriting";
+    font-size: 18px;
+}
+
+.container {
+    padding-right: 15%;
+    padding-left: 15%;
+}
+
+/* Padding and border are included in the total width and height of the elements */
+* {
+    box-sizing: border-box;
+}
+
+/* For desktop: */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="col-"] {
+    width: 100%;
+  }
+}
+
+[class*="col-"] {
+    float: left;
+    margin: 5px 0;
+    padding: 0 5px;
+}
+
+/* Prevent floating elements beeing dispalyed over other elements */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Modal background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+  
+/* Modal content */
+.modal-content {
+    background-color: #F5F5F5;
+    color: #FF8300;
+    margin: 15%;
+    padding: 20px;
+    width: 70%;
+}
+
+.submit {
+    background-color: #FFFFFF;
+    color: #00325A;
+    padding: 5px 10px;
+    font-family: "Lucida Handwriting";
+    font-size: 18px;
+}
+  
+/* The Close Button */
+.closeDialog {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: default;
+}
+
+.center {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
