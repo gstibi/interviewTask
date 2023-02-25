@@ -53,9 +53,16 @@ commentFieldTemplate.innerHTML = `
             <div class="row">
                 <div class="col-12">
                     <span class="align-right">
+                        <slot name="userName" class="timestamp">Default name</slot>
+                    </span>
+                </div>
+
+                <div class="col-12">
+                    <span class="align-right">
                         <slot name="timestamp" class="timestamp">cas</slot>
                     </span>
                 </div>
+
                 <div class="col-12">
                     <span class="align-right">
                         <button class="reply" id="reply">Reply</button>

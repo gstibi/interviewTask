@@ -38,6 +38,7 @@ navBarTemplate.innerHTML = `
     <ul>
         <li><a id="login" role="button">Log in</a></li>
         <li><a id="logout" role="button">Log out</a></li>
+        <li><a id="register" role="button">Register</a></li>
     </ul>
 </nav>`
 
@@ -55,6 +56,9 @@ class NavBar extends HTMLElement {
 
         const logoutButton = this.shadowRoot.getElementById("logout")
         logoutButton.onclick = this.logoutClickHandler
+
+        const registerButton = this.shadowRoot.getElementById("register")
+        registerButton.onclick = this.registerClickHandler
     }
 
     loginClickHandler() {
@@ -64,7 +68,13 @@ class NavBar extends HTMLElement {
 
     logoutClickHandler() {
         sessionStorage.setItem("isUserLoggedIn", false)
+        sessionStorage.setItem("loggedInUserName", null)
         location.reload()
+    }
+
+    registerClickHandler() {
+        const modal = document.getElementById("registerModal")
+        modal.style.display = "block"
     }
 }
 
