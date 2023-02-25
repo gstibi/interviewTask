@@ -1,4 +1,5 @@
 const IS_USER_LOGGED_IN = "isUserLoggedIn"
+const LOGGED_IN_USER_NAME = "loggedInUserName"
 
 const renderOneComment = (commentId, commentObj, formattedDate) => {
     
@@ -11,10 +12,16 @@ const renderOneComment = (commentId, commentObj, formattedDate) => {
     commentTextSlot.innerText = commentObj.comment
     commentTextSlot.setAttribute("slot", "commenttext")
 
+
+    // name should be from commentObj
+    const userNameSlot = document.createElement("span")
+    userNameSlot.innerText = commentObj.userName
+    userNameSlot.setAttribute("slot", "userName")
+
     // Create new comment field and append slots and Id
     const newComment = document.createElement("comment-field")
     newComment.id = commentId
-    newComment.append(commentTextSlot, timestampSlot)
+    newComment.append(commentTextSlot, timestampSlot, userNameSlot)
 
     // Append new comment to desired place in comments container
     if(commentObj.depth === 1){
@@ -103,10 +110,13 @@ const addCommentToLocalStorage = async (event, parentId = "") => {
     // Create new entry in localstorage
     const id = Date.now()
 
+    const userName = sessionStorage.getItem(LOGGED_IN_USER_NAME)
+
     const data = {
         comment,
         parentId,
-        depth
+        depth,
+        userName
     }
     localStorage.setItem(id, JSON.stringify(data))
 
@@ -132,6 +142,7 @@ const handleLogin = (event) => {
 
     if(storedPwd === event.target.password.value){
         sessionStorage.setItem(IS_USER_LOGGED_IN, true)
+        sessionStorage.setItem(LOGGED_IN_USER_NAME, event.target.name.value)
     }
 
     location.reload()
@@ -140,6 +151,27 @@ const handleLogin = (event) => {
 const setupLoginForm = () => {
     const form = document.getElementById("loginForm");
     form.addEventListener('submit', handleLogin);
+}
+
+const handleRegister = (event) => {
+    event.preventDefault()
+
+    const isNameUsed = sessionStorage.getItem(event.target.name.value)
+
+    if(!isNameUsed){
+        sessionStorage.setItem(event.target.name.value, event.target.password.value)
+        handleLogin(event)
+
+        location.reload()
+    } else {
+        alert("Name is already used")
+    }
+
+}
+
+const setupRegisterForm = () => {
+    const form = document.getElementById("registerForm");
+    form.addEventListener('submit', handleRegister);
 }
 
 
@@ -157,6 +189,7 @@ window.onload = (event) => {
     modalIds.forEach((modalId) => setupInappropriateWordsModal(modalId))
 
     setupLoginForm()
+    setupRegisterForm()
     
     renderComments()
 }
